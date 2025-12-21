@@ -7,6 +7,7 @@ import time
 # Permet d'importer nos modules communs (Crypto et Protocol)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
 
+from common.config import MASTER_IP, MASTER_PORT
 from common import protocol
 from common.crypto_utils import RSACipher
 
@@ -19,7 +20,6 @@ et attend les paquets. Il ne connait que le saut suivant.
 """
 
 # Configuration
-MASTER_IP = '127.0.0.1' 
 MASTER_PORT = 5000
 MY_PORT = 0 
 

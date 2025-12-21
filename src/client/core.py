@@ -4,11 +4,12 @@ import os
 import random
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
+from common.config import MASTER_IP, MASTER_PORT
 from common import protocol
 from common.crypto_utils import RSACipher
 
 class ClientCore:
-    def __init__(self, master_ip='127.0.0.1', master_port=5000):
+    def __init__(self,master_port=5000):
         self.master_ip = master_ip
         self.master_port = master_port
         self.rsa = RSACipher() 
