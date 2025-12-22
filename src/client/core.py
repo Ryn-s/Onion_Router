@@ -9,9 +9,10 @@ from common import protocol
 from common.crypto_utils import RSACipher
 
 class ClientCore:
-    def __init__(self,master_port=5000):
-        self.master_ip = master_ip
-        self.master_port = master_port
+    def __init__(self):
+        #  : On utilise les variables globales importées (MAJUSCULES)
+        self.master_ip = MASTER_IP
+        self.master_port = MASTER_PORT
         self.rsa = RSACipher() 
         self.available_routers = []
 
@@ -62,7 +63,6 @@ class ClientCore:
             r1, r2, r3 = path[0], path[1], path[2]
             print(f"[Oignon] Mode ALÉATOIRE : R1({r1['port']}) -> R2({r2['port']}) -> R3({r3['port']})")
 
-        # --- CONSTRUCTION (Identique à avant) ---
         
         # COUCHE 3 (Pour R3 -> Dest)
         payload_3 = f"{destination_ip}:{destination_port}|||{message}"
