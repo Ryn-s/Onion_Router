@@ -1,282 +1,114 @@
 # 🧅 OnionRouter - SAÉ 3.02 & R3.09
 
-**Auteurs :** Rayan & Arjanit  
-**Année :** 2025  
-**État du projet :** ✅ Fonctionnel (Testé sur architecture distribuée Linux/Windows)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![License](https://img.shields.io/badge/License-Educational-green)
+![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
+
+**Projet Universitaire - Implémentation d'un protocole de routage en oignon.**
+
+* **Auteurs :** Rayan & Arjanit
+* **Année :** 2025
+* **Cadre :** Architecture Distribuée & Cryptographie
 
 ---
 
 ## 📝 Description
-OnionRouter est une implémentation éducative du protocole de routage en oignon (type Tor). Il permet l'échange de messages chiffrés et anonymes à travers un réseau de nœuds intermédiaires.
 
-**Points forts techniques :**
-* **Cryptographie "Maison" :** Implémentation RSA manuelle (génération de clés, chiffrement modulaire) sans librairie crypto externe.
-* **Architecture Distribuée :** Séparation stricte entre Client, Routeurs et Master (Annuaire).
-* **Administration :** Interface graphique de supervision pour le Master et scripts d'automatisation.
+**OnionRouter** permet à deux clients de communiquer de manière anonyme à travers un réseau de routeurs virtuels. Le message est encapsulé dans plusieurs couches de chiffrement, qui sont "pelées" une à une par les nœuds intermédiaires.
+
+### ✨ Points Forts Techniques
+* **🔐 Cryptographie "Maison" :** Implémentation RSA manuelle (génération de clés, chiffrement modulaire) sans aucune librairie de crypto externe.
+* **🌐 Architecture Distribuée :** Séparation stricte entre le **Client** (Windows), les **Routeurs** (Linux) et le **Master** (Base de données).
+* **🖥️ Supervision :** Interface graphique d'administration pour visualiser la topologie réseau en temps réel.
+* **⚡ Automatisation :** Scripts de déploiement automatique des nœuds.
 
 ---
 
 ## 🛠️ Installation
 
 ### Pré-requis
-* Python 3.8 ou supérieur
-* Un serveur SQL (MariaDB ou MySQL) pour le Master
+* **Langage :** Python 3.8 ou supérieur.
+* **Base de données :** MariaDB ou MySQL (uniquement pour la machine Master).
+* **Système :** Testé sur Linux (Serveur/Routeurs) et Windows (Client).
 
 ### 1. Cloner le projet
 ```bash
-git clone [https://github.com/Ryn-s/Onion_Router.git](https://github.com/Ryn-s/Onion_Router.git)
+git clone https://github.com/Ryn-s/Onion_Router.git
 cd Onion_Router
+```
 
-2. Installer les dépendances
-Bash
-
-pip install -r requirements.txt
-
-3. Configuration de la Base de Données (Master uniquement)
-
-    Assurez-vous que MariaDB est lancé (sudo systemctl start mariadb).
-
-    Importez le schéma SQL :
-
-Bash
-
-sudo mariadb < sql/init_db.sql
-
-4. ⚠️ Configuration Réseau (IMPORTANT)
-
-Le fichier de configuration se trouve dans src/common/config.py.
-
-    Pour un test local (1 seule machine) : Laissez MASTER_IP = '127.0.0.1'.
-
-    Pour un test distribué (VMs) : Modifiez MASTER_IP avec l'adresse IP de la machine hébergeant le Master.
-
-
-🚀 Guide de Lancement
-
-Lancer les composants dans cet ordre précis :
-Étape 1 : Le Master (Serveur Annuaire)
-
-Sur la machine serveur :
-Bash
-
-# Lance le service Master
-python src/master/main.py
-
-# (Optionnel) Lance l'interface graphique de supervision
-python src/master/monitor.py
-
-Étape 2 : Les Routeurs (Nœuds)
-
-Sur les machines routeurs :
-Bash
-
-# Lancement manuel
-python src/router/main.py
-
-# OU via le script d'automatisation (si sous Linux avec xfce4-terminal)
-./start_routers.sh
-
-Attendez que les routeurs affichent "Routeur prêt".
-
-C'est la dernière ligne droite ! Pour que le prof n'ait aucun blocage et te mette une bonne note, ton README.md doit être son guide de survie. Il doit pouvoir installer et lancer le projet les yeux fermés.
-
-Voici le contenu exact pour ton README.md et ensuite la procédure pour le fichier de logs.
-1. Le Fichier README.md (Copie-colle ça)
-
-Remplace tout le contenu de ton fichier README.md actuel par ceci. C'est clair, pro, et ça prévient les erreurs de configuration IP.
-Markdown
-
-# 🧅 OnionRouter - SAÉ 3.02 & R3.09
-
-**Auteurs :** Rayan & Arjanit  
-**Année :** 2024-2025  
-**État du projet :** ✅ Fonctionnel (Testé sur architecture distribuée Linux/Windows)
-
----
-
-## 📝 Description
-OnionRouter est une implémentation éducative du protocole de routage en oignon (type Tor). Il permet l'échange de messages chiffrés et anonymes à travers un réseau de nœuds intermédiaires.
-
-**Points forts techniques :**
-* **Cryptographie "Maison" :** Implémentation RSA manuelle (génération de clés, chiffrement modulaire) sans librairie crypto externe.
-* **Architecture Distribuée :** Séparation stricte entre Client, Routeurs et Master (Annuaire).
-* **Administration :** Interface graphique de supervision pour le Master et scripts d'automatisation.
-
----
-
-## 🛠️ Installation
-
-### Pré-requis
-* Python 3.8 ou supérieur
-* Un serveur SQL (MariaDB ou MySQL) pour le Master
-
-### 1. Cloner le projet
+### 2. Installer les dépendances
 ```bash
-git clone [https://github.com/Ryn-s/Onion_Router.git](https://github.com/Ryn-s/Onion_Router.git)
-cd Onion_Router
-
-2. Installer les dépendances
-Bash
-
 pip install -r requirements.txt
+```
 
-3. Configuration de la Base de Données (Master uniquement)
-
-    Assurez-vous que MariaDB est lancé (sudo systemctl start mariadb).
-
-    Importez le schéma SQL :
-
-Bash
-
+### 3. Configuration de la Base de Données (Master uniquement)
+Assurez-vous que le service SQL est lancé, puis importez le schéma :
+```bash
+sudo systemctl start mariadb
 sudo mariadb < sql/init_db.sql
+```
 
-4. ⚠️ Configuration Réseau (IMPORTANT)
-
+### ⚠️ Configuration Réseau (IMPORTANT)
 Le fichier de configuration se trouve dans src/common/config.py.
 
-    Pour un test local (1 seule machine) : Laissez MASTER_IP = '127.0.0.1'.
+    Modification requise avant lancement :
 
-    Pour un test distribué (VMs) : Modifiez MASTER_IP avec l'adresse IP de la machine hébergeant le Master.
+        Pour un test local (1 PC) : Laissez MASTER_IP = '127.0.0.1'.
 
-🚀 Guide de Lancement
+        Pour un test distribué (VMs) : Modifiez MASTER_IP avec l'adresse IP réelle de la machine hébergeant le Master (ex: '192.168.1.15').
 
-Lancer les composants dans cet ordre précis :
-Étape 1 : Le Master (Serveur Annuaire)
 
-Sur la machine serveur :
-Bash
+### 🚀 Guide de Lancement (Ordre Précis)
 
-# Lance le service Master
+## Étape 1 : Le Master (Serveur Annuaire)
+
+Sur la VM Linux dédiée au Master :
+```bash
+# 1. Lance le service principal
 python src/master/main.py
 
-# (Optionnel) Lance l'interface graphique de supervision
+# 2. (Optionnel) Ouvre l'interface de supervision graphique
 python src/master/monitor.py
+```
 
-Étape 2 : Les Routeurs (Nœuds)
+### Étape 2 : Les Routeurs (Nœuds de transport)
 
-Sur les machines routeurs :
-Bash
-
-# Lancement manuel
-python src/router/main.py
-
-# OU via le script d'automatisation (si sous Linux avec xfce4-terminal)
+Sur la machine hôte (ou une autre VM) :
+```bash
+# Option A : Lancement via le script d'automatisation (Linux/XFCE)
 ./start_routers.sh
 
-Attendez que les routeurs affichent "Routeur prêt".
-Étape 3 : Le Serveur de Réception (Destinataire)
-Bash
+# Option B : Lancement manuel (Ouvrir 3 terminaux)
+python src/router/main.py
+```
 
+### Étape 3 : Le Serveur de Réception
+
+Pour simuler le destinataire final :
+```bash
 python tests/dummy_server.py
+```
 
-C'est la dernière ligne droite ! Pour que le prof n'ait aucun blocage et te mette une bonne note, ton README.md doit être son guide de survie. Il doit pouvoir installer et lancer le projet les yeux fermés.
+### Étape 4 : Le Client (Utilisateur)
 
-Voici le contenu exact pour ton README.md et ensuite la procédure pour le fichier de logs.
-1. Le Fichier README.md (Copie-colle ça)
-
-Remplace tout le contenu de ton fichier README.md actuel par ceci. C'est clair, pro, et ça prévient les erreurs de configuration IP.
-Markdown
-
-# 🧅 OnionRouter - SAÉ 3.02 & R3.09
-
-**Auteurs :** Rayan & Arjanit  
-**Année :** 2024-2025  
-**État du projet :** ✅ Fonctionnel (Testé sur architecture distribuée Linux/Windows)
-
----
-
-## 📝 Description
-OnionRouter est une implémentation éducative du protocole de routage en oignon (type Tor). Il permet l'échange de messages chiffrés et anonymes à travers un réseau de nœuds intermédiaires.
-
-**Points forts techniques :**
-* **Cryptographie "Maison" :** Implémentation RSA manuelle (génération de clés, chiffrement modulaire) sans librairie crypto externe.
-* **Architecture Distribuée :** Séparation stricte entre Client, Routeurs et Master (Annuaire).
-* **Administration :** Interface graphique de supervision pour le Master et scripts d'automatisation.
-
----
-
-## 🛠️ Installation
-
-### Pré-requis
-* Python 3.8 ou supérieur
-* Un serveur SQL (MariaDB ou MySQL) pour le Master
-
-### 1. Cloner le projet
-```bash
-git clone [https://github.com/Ryn-s/Onion_Router.git](https://github.com/Ryn-s/Onion_Router.git)
-cd Onion_Router
-
-2. Installer les dépendances
-Bash
-
-pip install -r requirements.txt
-
-3. Configuration de la Base de Données (Master uniquement)
-
-    Assurez-vous que MariaDB est lancé (sudo systemctl start mariadb).
-
-    Importez le schéma SQL :
-
-Bash
-
-sudo mariadb < sql/init_db.sql
-
-4. ⚠️ Configuration Réseau (IMPORTANT)
-
-Le fichier de configuration se trouve dans src/common/config.py.
-
-    Pour un test local (1 seule machine) : Laissez MASTER_IP = '127.0.0.1'.
-
-    Pour un test distribué (VMs) : Modifiez MASTER_IP avec l'adresse IP de la machine hébergeant le Master.
-
-🚀 Guide de Lancement
-
-Lancer les composants dans cet ordre précis :
-Étape 1 : Le Master (Serveur Annuaire)
-
-Sur la machine serveur :
-Bash
-
-# Lance le service Master
-python src/master/main.py
-
-# (Optionnel) Lance l'interface graphique de supervision
-python src/master/monitor.py
-
-Étape 2 : Les Routeurs (Nœuds)
-
-Sur les machines routeurs :
-Bash
-
-# Lancement manuel
-python src/router/main.py
-
-# OU via le script d'automatisation (si sous Linux avec xfce4-terminal)
-./start_routers.sh
-
-Attendez que les routeurs affichent "Routeur prêt".
-Étape 3 : Le Serveur de Réception (Destinataire)
-Bash
-
-python tests/dummy_server.py
-
-Étape 4 : Le Client
-
-Sur la machine utilisateur :
-Bash
-
+Sur la VM Windows (ou autre) :
+```bash 
 python src/client/gui.py
+```
 
-    Cliquez sur Actualiser pour récupérer la liste des routeurs.
+1. Cliquez sur "Actualiser" pour récupérer la liste des routeurs.
 
-    Écrivez votre message et cliquez sur Envoyer.
+2. Saisissez votre message.
 
-📂 Organisation du Code
+3. Cliquez sur "Envoyer".
 
-    src/common/ : Cryptographie RSA et protocole réseau.
+### 📂 Organisation du Code
 
-    src/master/ : Gestion de la BDD et interface de monitoring.
-
-    src/router/ : Logique de transfert et de désinscription automatique.
-
-    src/client/ : Interface utilisateur PyQt5.
+| Dossier | Description |
+| :--- | :--- |
+| `src/common/` | **Cœur du projet :** Crypto RSA manuelle et Protocole réseau. |
+| `src/master/` | Gestion de la BDD et Interface Admin ( `monitor.py` ). |
+| `src/router/` | Logique de transfert et désinscription automatique. |
+| `src/client/` | Interface utilisateur PyQt5. |
+| `docs/` | Documentation et schémas. |
