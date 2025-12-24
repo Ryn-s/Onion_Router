@@ -1,0 +1,6 @@
+# Dépendances du projet OnionRouter
+# A installer via : pip install -r requirements.txt
+
+mysql-connector-python
+sympy
+PyQt5
