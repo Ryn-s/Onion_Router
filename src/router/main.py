@@ -119,6 +119,20 @@ class OnionRouter:
         except Exception as e:
             print(f"[Erreur] Impossible de transférer à {ip}:{port} - {e}")
 
+    def unregister_from_master(self):
+        """Prévient le Master qu'on s'éteint"""
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect((MASTER_IP, MASTER_PORT))
+            # On envoie : UNREGISTER_ROUTER ||| MON_PORT
+            msg = protocol.format_message("UNREGISTER_ROUTER", self.port)
+            sock.send(msg.encode('utf-8'))
+            sock.close()
+            print("[Info] Désinscription envoyée au Master.")
+        except:
+            print("[Warning] Impossible de prévenir le Master (déjà éteint ?)")
+
+
     def start(self):
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.bind(('0.0.0.0', MY_PORT))
@@ -135,12 +149,14 @@ class OnionRouter:
                     t = threading.Thread(target=self.handle_incoming_packet, args=(conn, addr))
                     t.start()
             except KeyboardInterrupt:
-                print("Arrêt du routeur.")
+                print("\n[Arrêt] Interruption détectée (Ctrl+C).")
+                # ---  On se désinscrit avant de quitter ---
+                self.unregister_from_master()
+                # -----------------------------------------------------
             finally:
                 server_socket.close()
         else:
             print("Arrêt : Impossible de s'enregistrer au Master.")
-
 if __name__ == "__main__":
     router = OnionRouter()
     router.start()
