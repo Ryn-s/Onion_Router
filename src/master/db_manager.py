@@ -77,6 +77,7 @@ class DBManager:
 
     def get_all_active_routers(self):
         if not self.connection: self.connect()
+        self.connection.commit() # Force le rafraîchissement des données 
         cursor = self.connection.cursor(dictionary=True)
         cursor.execute("SELECT ip_address, port, pub_key_e, pub_key_n FROM routers WHERE status='online'")
         res = cursor.fetchall()
