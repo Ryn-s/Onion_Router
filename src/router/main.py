@@ -64,12 +64,14 @@ class OnionRouter:
             # On reçoit le paquet chiffré (format string avec des /)
             encrypted_data = conn.recv(16384).decode('utf-8') # J'ai augmenté le buffer au cas où
             
+            print(f"[Anonymat] Trame chiffrée reçue : {encrypted_data[:30]}... [Total: {len(encrypted_data)} octets]")
+
             if not encrypted_data:
                 return
 
             print(f"[Crypto] Message chiffré reçu ({len(encrypted_data)} bytes). Déchiffrement...")
             
-            # --- CORRECTION ICI ---
+            
             # On passe directement la chaîne (ex: "123/456") à decrypt.
             # On NE convertit PAS en int() car c'est une suite de blocs maintenant.
             decrypted_packet = self.rsa.decrypt(encrypted_data)
