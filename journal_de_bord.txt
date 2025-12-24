@@ -1,0 +1,11 @@
+* 2025-12-24 | Arjanit : Fix: Forcer le rafraîchissement de la BDD pour le monitoring temps réel
+* 2025-12-24 | Rayan : Fix: Envoi du signal UNREGISTER au Master lors de l'arrêt (Ctrl+C)
+* 2025-12-24 | Arjanit : Fix: Nettoyage auto de la BDD au démarrage et gestion désinscription routeurs
+* 2025-12-24 | Rayan : Feat: Script d'automatisation de déploiement (AC23.01) et logs de preuve d'anonymisation
+* 2025-12-24 | Arjanit : Add: Interface graphique de monitoring Master (Qt) et liste des dépendances
+* 2025-12-24 | Rayan : Finalisation : Ajout des requirements et commentaires de config
+* 2025-12-23 | Rayan : Config: Mise à jour IP production pour VMs
+* 2025-12-21 | Rayan : Config: Mise à jour IP production pour VMs
+* 2025-12-21 | Rayan : Intégration finale : Connexion GUI Client avec le Core et correction bugs Master
+* 2025-12-21 | Rayan : Implémentation Crypto RSA manuelle et Logique de Routage Oignon
+* 2025-12-21 | Arjanit : Initialisation structure projet : BDD script et serveur Master de base
