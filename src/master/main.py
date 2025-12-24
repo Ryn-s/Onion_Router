@@ -23,6 +23,11 @@ class MasterServer:
         self.db = DBManager()
         self.running = True
 
+        # ---  : Nettoyage au lancement ---
+        print("[Master] Nettoyage de la base de données...")
+        self.db.reset_routers_table() 
+        # ------------------------------------------
+
     def handle_client(self, conn, addr):
         """Gère une connexion entrante (Routeur ou Client)"""
         print(f"[Master] Nouvelle connexion de {addr}")
@@ -49,6 +54,16 @@ class MasterServer:
                     conn.send(protocol.format_message("OK", "Enregistrement reussi").encode('utf-8'))
                 else:
                     print("[Master] Erreur format REGISTER")
+
+            # --- : Gestion du UNREGISTER ---
+            elif header == "UNREGISTER_ROUTER":
+                # Le routeur nous dit au revoir
+                if len(args) == 1:
+                    router_port = int(args[0])
+                    # On supprime l'entrée de la BDD
+                    self.db.remove_router(addr[0], router_port)
+                    self.db.log_event(f"Router-{addr[0]}", "EXIT", f"Routeur {router_port} déconnecté proprement")
+            # -----------------------------------------
 
             elif header == "GET_TOPOLOGY":
                 # Le client demande la liste des routeurs
