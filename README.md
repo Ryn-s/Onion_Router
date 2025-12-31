@@ -1,4 +1,4 @@
-# 🧅 OnionRouter - SAÉ 3.02 & R3.09
+#  OnionRouter - SAÉ 3.02 & R3.09
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![License](https://img.shields.io/badge/License-Educational-green)
@@ -13,24 +13,24 @@
 
 ---
 
-## 📝 Description
+##  Description
 
 **OnionRouter** permet à deux clients de communiquer de manière anonyme à travers un réseau de routeurs virtuels. Le message est encapsulé dans plusieurs couches de chiffrement, qui sont pelées une à une par les nœuds intermédiaires.
 
-### 🔧 Points Forts Techniques
+###  Points Forts Techniques
 
-- **🔐 Cryptographie "Maison" :** Implémentation RSA manuelle (génération de clés, chiffrement modulaire) sans librairie de crypto externe.
-- **🌐 Architecture Distribuée :** Séparation stricte entre **Client** (Windows), **Routeurs** (Linux) et **Master** (base de données).
-- **🖥️ Supervision :** Interface graphique d'administration pour visualiser la topologie réseau en temps réel.
-- **⚡ Automatisation :** Scripts de déploiement automatique des nœuds (ex. `start_routers.sh`).
+- ** Cryptographie "Maison" :** Implémentation RSA manuelle (génération de clés, chiffrement modulaire) sans librairie de crypto externe.
+- ** Architecture Distribuée :** Séparation stricte entre **Client** (Windows), **Routeurs** (Linux) et **Master** (base de données).
+- ** Supervision :** Interface graphique d'administration pour visualiser la topologie réseau en temps réel.
+- ** Automatisation :** Scripts de déploiement automatique des nœuds (ex. `start_routers.sh`).
 
 ---
 
-## 🛠️ Installation & Pré-requis
+##  Installation & Pré-requis
 
 Cette section détaille l'installation complète du projet.
 
-### 🐧 Préparation du Système (Linux)
+###  Préparation du Système (Linux)
 
 Distribution conseillée : Debian/Ubuntu (ou dérivés).
 Le script d'automatisation utilise **xfce4-terminal** pour ouvrir plusieurs fenêtres.
@@ -84,7 +84,7 @@ sudo mariadb < sql/init_db.sql
 
 ---
 
-## 🌐 Configuration Réseau (IMPORTANT)
+## Configuration Réseau (IMPORTANT)
 
 Le fichier de configuration se trouve dans :
 
@@ -112,7 +112,7 @@ ip a
 
 ---
 
-## 🚀 Guide de Lancement (Ordre conseillé)
+##  Guide de Lancement (Ordre conseillé)
 
 ### Étape 1 : Le Master (Serveur Annuaire)
 
@@ -161,7 +161,7 @@ python src/client/gui.py
 
 ---
 
-## 📂 Organisation du Code
+##  Organisation du Code
 
 ```
 src/
@@ -201,7 +201,7 @@ README.md
 
 ---
 
-## 🔐 Sécurité & Cryptographie
+##  Sécurité & Cryptographie
 
 ### Protocole Onion
 
@@ -225,7 +225,7 @@ L'implémentation RSA manuelle comprend :
 
 ---
 
-## 💾 Base de Données
+##  Base de Données
 
 ### Tables principales
 
@@ -259,7 +259,7 @@ CREATE TABLE logs (
 
 ---
 
-## 🖥️ Interface Graphique (PyQt5)
+## Interface Graphique (PyQt5)
 
 ### Client GUI (`src/client/gui.py`)
 
@@ -278,7 +278,7 @@ CREATE TABLE logs (
 
 ---
 
-## 📋 Fichiers Importants
+## Fichiers Importants
 
 ### `requirements.txt`
 
@@ -304,7 +304,7 @@ Script Bash pour lancer automatiquement 3 routeurs dans des terminaux XFCE sépa
 
 ---
 
-## 🧪 Tests & Débogage
+##  Tests & Débogage
 
 ### Serveur Dummy
 
@@ -325,7 +325,7 @@ Simule un serveur qui :
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Problème : Connexion au Master refusée
 
@@ -365,29 +365,11 @@ export DISPLAY=:0
 python src/client/gui.py
 ```
 
----
-
-## 📚 Documentation Supplémentaire
-
-- **Architecture** : `docs/architecture.md`
-- **Protocole Onion** : `docs/protocol.md`
-- **Schémas réseau** : `docs/schemas/`
-- **Notes techniques** : `docs/notes.md`
 
 ---
 
-## 🤝 Contribution
-
-Ce projet est **éducatif**. Les modifications et améliorations sont bienvenues pour les travaux de recherche ou d'enseignement.
-
----
-
-## 📜 Licence
+##  Licence
 
 Projet à but **éducatif** dans le cadre d'une SAÉ d'architecture distribuée et cryptographie.
 
 Année académique : 2025
-
----
-
-**Dernière mise à jour :** 31/12/2025
