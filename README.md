@@ -192,6 +192,9 @@ src/
     gui.py
     core.py
 docs/
+  Fiche_Individuelle_Rayan.pdf
+  Rapport_Final_RayAnit.pdf
+  SHALA.ARJANIT.pdf
 sql/
   init_db.sql
 start_routers.sh
@@ -199,6 +202,7 @@ tests/
   dummy_server.py
 requirements.txt
 README.md
+journal_de_bord.txt
 ```
 
 | Dossier            | Description                                                                       |
@@ -216,26 +220,19 @@ README.md
 
 ##  Sécurité & Cryptographie
 
-### Protocole Onion
-
-Le protocole Onion est basé sur le chiffrement par couches :
-
-1. **Client** chiffre le message avec la clé publique du **dernier routeur**.
-2. Chaque **routeur intermédiaire** ajoute une couche de chiffrement.
-3. Les routeurs déchiffrent progressivement jusqu'à atteindre le **serveur final**.
-4. Le **serveur dummy** reçoit et traite le message en clair.
-
 ### Implémentation RSA
 
-L'implémentation RSA manuelle comprend :
+Conformément au cahier des charges, aucune librairie de cryptographie externe (type cryptography ou PyCryptodome) n'a été utilisée. Tout a été recodé mathématiquement :
 
-- **Génération de clés** : p, q, e, d
-- **Chiffrement modulaire** : c ≡ m^e (mod n)
-- **Déchiffrement modulaire** : m ≡ c^d (mod n)
-- **Gestion des padding** et formatage des messages
+**Génération de clés** : Calcul manuel de p, q, n, e, d (avec sympy pour la primalité).
 
-**Aucune dépendance externe** pour la cryptographie (pas de `cryptography`, `PyCryptodome`, etc.).
+**Chiffrement modulaire** : c = m^e (mod n)
 
+**Déchiffrement modulaire** : m = c^d (mod n)
+
+**Gestion des messages longs** : Implémentation d'un algorithme de Chunking (découpage par blocs) et de formatage propriétaire pour contourner la limite de taille du RSA standard.
+
+**Chunking** : (découpage par blocs) et de formatage propriétaire pour contourner la limite de taille du RSA standard. 
 ---
 
 ##  Base de Données
@@ -341,12 +338,6 @@ Simule un serveur qui :
 - Affiche les messages reçus (en clair)
 - Confirme la réception
 
-### Logs et Monitoring
-
-- **Logs locaux** : `src/master/logs/`
-- **Base de données** : Consultez les tables via `mariadb` ou un GUI comme `DBeaver`
-- **Interface monitor** : Graphiques en temps réel avec PyQt5
-
 ---
 
 ## Troubleshooting
@@ -378,15 +369,6 @@ kill -9 <PID>
 ```bash
 sudo systemctl restart mariadb
 sudo systemctl status mariadb
-```
-
-### Problème : PyQt5 ne s'affiche pas
-
-Si vous lancez depuis SSH, exportez l'affichage :
-
-```bash
-export DISPLAY=:0
-python src/client/gui.py
 ```
 
 
