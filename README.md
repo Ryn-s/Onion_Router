@@ -35,6 +35,17 @@ Cette section détaille l'installation complète du projet.
 Distribution conseillée : Debian/Ubuntu (ou dérivés).
 Le script d'automatisation utilise **xfce4-terminal** pour ouvrir plusieurs fenêtres.
 
+### 0. Important !! Ajouter ton utilisateur au groupe sudo (Ubuntu, Debian, Linux Mint, Kali)
+```bash
+su -
+usermod -aG sudo nom_utilisateur
+```
+Appliquer les changements : pour que le système prenne en compte ce nouveau groupe, vous devez vous déconnecter et vous reconnecter.
+
+Tapez exit pour quitter le mode root.
+
+Puis Déconnectez-vous de la session (ou redémarrer l'ordinateur).
+    
 #### 1. Installation des dépendances système
 
 ```bash
@@ -294,9 +305,6 @@ Configuration centrale du projet incluant :
 
 - `MASTER_IP` : IP du serveur master
 - `MASTER_PORT` : Port du master (ex. 5000)
-- `DB_CONFIG` : Identifiants MariaDB
-- `RSA_KEY_SIZE` : Taille des clés RSA (ex. 1024 bits)
-- `PACKET_SIZE` : Taille des paquets réseau
 
 ### `start_routers.sh`
 
