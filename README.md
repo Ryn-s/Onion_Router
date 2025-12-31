@@ -19,10 +19,10 @@
 
 ###  Points Forts Techniques
 
-- ** Cryptographie "Maison" :** Implémentation RSA manuelle (génération de clés, chiffrement modulaire) sans librairie de crypto externe.
-- ** Architecture Distribuée :** Séparation stricte entre **Client** (Windows), **Routeurs** (Linux) et **Master** (base de données).
-- ** Supervision :** Interface graphique d'administration pour visualiser la topologie réseau en temps réel.
-- ** Automatisation :** Scripts de déploiement automatique des nœuds (ex. `start_routers.sh`).
+- **Cryptographie "Maison" :** Implémentation RSA manuelle (génération de clés, chiffrement modulaire) sans librairie de crypto externe.
+- **Architecture Distribuée :** Séparation stricte entre **Client** (Windows), **Routeurs** (Linux) et **Master** (base de données).
+- **Supervision :** Interface graphique d'administration pour visualiser la topologie réseau en temps réel.
+- **Automatisation :** Scripts de déploiement automatique des nœuds (ex. `start_routers.sh`).
 
 ---
 
