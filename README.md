@@ -292,6 +292,8 @@ Simule un serveur qui :
 
 ## Troubleshooting
 
+**IMPORTANT** Si Jamais le message du client ne passe pas désactiver le pare-feu windows et redemarer ca marchera normalement et aussi à l'iut les vm ne marche pas en acces par pont il faut mettre sa 5g et faire un partage.
+
 ### Problème : Connexion au Master refusée
 
 **Solution** : Vérifiez que `MASTER_IP` correspond à l'IP réelle du serveur master.
