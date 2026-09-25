@@ -8,6 +8,12 @@ Lien Vidéo : https://youtu.be/nkGbUICb_v0
 
 **Projet Universitaire - Implémentation d'un protocole de routage en oignon.**
 
+> **English summary.** Pair university project (2025): two clients talk anonymously through a network of
+> virtual routers; each message is wrapped in several layers of encryption that the routers peel off one
+> by one. RSA is implemented by hand, without any crypto library, for learning purposes. Distributed
+> architecture (client, routers, master with a MariaDB database), PyQt5 monitoring of the live topology
+> and deployment scripts. Demo video: https://youtu.be/nkGbUICb_v0
+
 - **Auteurs :** Rayan & Arjanit
 - **Groupe :** RayAnit
 - **Année :** 2025
